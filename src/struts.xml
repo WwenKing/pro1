@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="com.etc.chapter01" extends="struts-default">
+		<interceptors>
+			<interceptor name="myinterceptor" class="interceptor.MyInterceptor"></interceptor>
+			<interceptor-stack name="test">
+				<interceptor-ref name="myinterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<action name="Login" class="com.etc.action.LoginAction">
+			<interceptor-ref name="test"></interceptor-ref>
+			<result name="success">/welcome.jsp</result>
+			<result name="fail">/index.jsp</result>
+			<result name="list">/list.jsp</result>
+		</action>
+	</package>
+</struts>
